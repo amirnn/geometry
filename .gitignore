@@ -1,0 +1,17 @@
+# Platform
+.DS_Store
+
+# IDE
+/.vscode/
+/.idea/
+/.vs/
+
+# Build
+/.cache/
+/build/
+/out/
+compile_commands.json
+
+
+# Artifacts
+*.a

@@ -1,0 +1,110 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 31,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "Default Config",
+            "description": "Default build using Ninja Multi-Config generator",
+            "generator": "Ninja Multi-Config",
+            "binaryDir": "${sourceDir}/build/",
+            "hidden": true
+        },
+        {
+            "name": "windows",
+            "inherits": "default",
+            "displayName": "Windows-only configuration",
+            "description": "This build is only available on Windows",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            },
+            "binaryDir": "${sourceDir}/build/windows/default"
+        },
+        {
+            "name": "windows-llvm",
+            "inherits": "default",
+            "displayName": "Windows-only configuration",
+            "description": "This build is only available on Windows uses LLVM",
+            "condition": {
+              "type": "equals",
+              "lhs": "${hostSystemName}",
+              "rhs": "Windows"
+            },
+            "environment": {
+                "CC": "C:/Program Files/LLVM/bin/clang",
+                "CXX": "C:/Program Files/LLVM/bin/clang++"
+            },
+            "binaryDir": "${sourceDir}/build/windows/llvm"
+        },
+        {
+            "name": "macOS-GCC",
+            "inherits": "default",
+            "displayName": "macOS-GCC",
+            "description": "Only available on macOS uses GCC from Homebrew",
+            "condition": {
+              "type": "equals",
+              "lhs": "${hostSystemName}",
+              "rhs": "Darwin"
+            },
+            "environment": {
+                "CC": "/opt/homebrew/bin/gcc-14",
+                "CXX": "/opt/homebrew/bin/g++-14"
+            },
+            "binaryDir": "${sourceDir}/build/macos/gcc"
+        },
+        {
+            "name": "macOS-LLVM",
+            "inherits": "default",
+            "displayName": "macOS-LLVM",
+            "description": "Only available on macOS uses LLVM from Homebrew",
+            "condition": {
+              "type": "equals",
+              "lhs": "${hostSystemName}",
+              "rhs": "Darwin"
+            },
+            "environment": {
+                "CC": "/opt/homebrew/opt/llvm/bin/clang",
+                "CXX": "/opt/homebrew/opt/llvm/bin/clang++"
+            },
+            "binaryDir": "${sourceDir}/build/macos/llvm"
+        },
+        {
+            "name": "linux-GCC",
+            "inherits": "default",
+            "displayName": "linux-LLVM",
+            "description": "Only available on Linux uses gcc-14",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": " Linux"
+            },
+            "environment": {
+                "CC": "/usr/bin/gcc-14",
+                "CXX": "/usr/bin/g++-14"
+            },
+            "binaryDir": "${sourceDir}/build/wsl/gcc"
+        },
+        {
+            "name": "linux-LLVM",
+            "inherits": "default",
+            "displayName": "linux-LLVM",
+            "description": "Only available on Linux uses Clang-19 and LLVM",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": " Linux"
+            },
+            "environment": {
+                "CC": "/usr/bin/clang-19",
+                "CXX": "/usr/bin/clang++-19"
+            },
+            "binaryDir": "${sourceDir}/build/wsl/llvm"
+        }
+    ]
+}
