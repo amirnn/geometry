@@ -6,6 +6,7 @@ module;
 #include <concepts>
 #include <valarray>
 #include <vector>
+#include <cstddef>
 export module Geometry:Vector;
 
 export namespace geometry {

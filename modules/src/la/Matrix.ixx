@@ -101,28 +101,26 @@ class Matrix {
   std::ranges::random_access_range auto column(size_t const j) const noexcept {
     using namespace std::ranges::views;
     size_t skip_elements = j * r;
-    size_t stride = 0ul;
+    size_t strd = 0ul;
     if constexpr (row_major) {
-      stride = c;
+      strd = c;
     } else {
-      stride = 1;
+      strd = 1;
     }
-    return m_data | std::ranges::views::stride(stride) | drop(skip_elements) |
-           take(r) | as_const;
+    return m_data | stride(strd) | drop(skip_elements) | take(r) | as_const;
   }
 
   std::ranges::random_access_range auto column(size_t const j) noexcept {
     using namespace std::ranges::views;
     size_t skip_elements = j * r;
-    size_t stride = 0ul;
+    size_t strd = 0ul;
     if constexpr (row_major) {
-      stride = c;
+      strd = c;
     } else {
-      stride = 1;
+      strd = 1;
     }
     m_matrix_has_been_modified = true;
-    return m_data | std::ranges::views::stride(stride) | drop(skip_elements) |
-           take(r);
+    return m_data | stride(strd) | drop(skip_elements) | take(r);
   }
 
   /**
@@ -137,28 +135,26 @@ class Matrix {
   std::ranges::random_access_range auto row(size_t const i) const noexcept {
     using namespace std::ranges::views;
     size_t skip_elements = i * c;
-    size_t stride = 0ul;
+    size_t strd = 0ul;
     if constexpr (row_major) {
-      stride = 1;
+      strd = 1;
     } else {
-      stride = r;
+      strd = r;
     }
-    return m_data | std::ranges::views::stride(stride) | drop(skip_elements) |
-           take(c) | as_const;
+    return m_data | stride(strd) | drop(skip_elements) | take(c) | as_const;
   }
 
   std::ranges::random_access_range auto row(size_t const i) noexcept {
     using namespace std::ranges::views;
     size_t skip_elements = i * c;
-    size_t stride = 0ul;
+    size_t strd = 0ul;
     if constexpr (row_major) {
-      stride = 1;
+      strd = 1;
     } else {
-      stride = r;
+      strd = r;
     }
     m_matrix_has_been_modified = true;
-    return m_data | std::ranges::views::stride(stride) | drop(skip_elements) |
-           take(c);
+    return m_data | stride(strd) | drop(skip_elements) | take(c);
   }
 
   /**
