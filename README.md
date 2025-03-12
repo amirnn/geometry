@@ -21,6 +21,16 @@ computational methods.
 
 ---
 
+## Development and Complexity Management Policy
+
+At the time of writing (11.03.2025) LLVM Clang does not support std::ranges::views::stride; For this reason on Windows
+one should use Visual C++ and on the linux and macOS one can use GCC. The Clang's implementation is on its way and I
+could have used an alpha version, or implement it myself. However, I am refraining from diving lower. This is due to my
+complexity management policy. At the end of the day, I want to develop a Computational Geometry Logic on top of 
+standard C++.
+
+---
+
 ## Folder Structure
 
 - **`modules/include/`**  
@@ -64,6 +74,15 @@ To execute the unit tests:
 ```bash
 ctest --output-on-failure
 ```
+
+---
+
+## References
+
+The numerical analysis and algorithms are in need of careful design and testing. For this reason, I am following several
+resources for this end.
+- William H. Press, etc. Numerical Recopies Third Edition
+- Solomon, Justin. Numerical Algorithms. Textbook published by AK Peters/CRC Press, 2015
 
 ---
 
